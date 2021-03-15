@@ -1,8 +1,8 @@
 package main
 
 import (
-	"receipt/handler"
-	pb "receipt/proto"
+	"github.com/pashamad/microapi/receipt/handler"
+	pb "github.com/pashamad/microapi/receipt/proto"
 
 	"github.com/micro/micro/v3/service"
 	"github.com/micro/micro/v3/service/logger"

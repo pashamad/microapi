@@ -8,5 +8,3 @@ require (
 	github.com/micro/micro/v3 v3.1.1
 	google.golang.org/protobuf v1.25.0
 )
-
-replace github.com/pashamad/microapi => ./microapi

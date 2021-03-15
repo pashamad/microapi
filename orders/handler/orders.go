@@ -5,7 +5,7 @@ import (
 
 	log "github.com/micro/micro/v3/service/logger"
 
-	orders "orders/proto"
+	orders "github.com/pashamad/microapi/orders/proto"
 )
 
 type Orders struct{}

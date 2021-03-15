@@ -1,8 +1,8 @@
 package main
 
 import (
-	"orders/handler"
-	pb "orders/proto"
+	"github.com/pashamad/microapi/orders/handler"
+	pb "github.com/pashamad/microapi/orders/proto"
 
 	"github.com/micro/micro/v3/service"
 	"github.com/micro/micro/v3/service/logger"

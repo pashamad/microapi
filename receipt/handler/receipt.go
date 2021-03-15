@@ -2,11 +2,11 @@ package handler
 
 import (
 	"context"
-	"receipt/parser"
+	"github.com/pashamad/microapi/receipt/parser"
 
 	log "github.com/micro/micro/v3/service/logger"
 
-	receipt "receipt/proto"
+	receipt "github.com/pashamad/microapi/receipt/proto"
 )
 
 // todo: error definitions
