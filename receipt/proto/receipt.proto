@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package receipt;
+
+option go_package = "proto;receipt";
+
+service Receipt {
+    rpc Call(Message) returns (Response) {}
+	rpc Scan(ScanRequest) returns (ScanResponse) {}
+	rpc Stream(StreamingRequest) returns (stream StreamingResponse) {}
+	rpc PingPong(stream Ping) returns (stream Pong) {}
+}
+
+message Message {
+    string data = 1;
+}
+
+message Response {
+    string result = 1;
+}
+
+message ScanRequest {
+	string data = 1;
+}
+
+message ScanResponse {
+	float amount = 1;
+}
+
+message StreamingRequest {
+	int64 count = 1;
+}
+
+message StreamingResponse {
+	int64 count = 1;
+}
+
+message Ping {
+	int64 stroke = 1;
+}
+
+message Pong {
+	int64 stroke = 1;
+}
