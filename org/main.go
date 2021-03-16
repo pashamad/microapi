@@ -11,7 +11,7 @@ import (
 	"github.com/micro/micro/v3/service/logger"
 )
 
-var dbAddress = "postgresql://root:test¡@localhost:5432/onlife_business?sslmode=allow"
+var dbAddress = "postgresql://root:test@localhost:5432/onlife_business?sslmode=allow"
 
 func main() {
 	// Create service
