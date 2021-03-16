@@ -2,11 +2,9 @@ package handler
 
 import (
 	"context"
-	"github.com/pashamad/microapi/receipt/parser"
-
 	log "github.com/micro/micro/v3/service/logger"
-
 	receipt "github.com/pashamad/microapi/receipt/proto"
+	"github.com/pashamad/microapi/receipt/scanner"
 )
 
 // todo: error definitions
@@ -22,16 +20,14 @@ func (e *Receipt) Call(ctx context.Context, req *receipt.Message, rsp *receipt.R
 
 func (e *Receipt) Scan(ctx context.Context, req *receipt.ScanRequest, rsp *receipt.ScanResponse) error {
 	log.Info("Received Receipt.Scan request")
-	log.Debug("DEBUG message")
-	log.Trace("TRACE message")
-	log.Info("INFO message")
-	rsp.Amount = 0
-	meta, err := parser.Parse(req.Data)
+
+	order, err := scanner.GetOrder(req.Data)
 	if err != nil {
 		return err
 	}
-	log.Info("Parsed code meta, ", meta)
-	// restore order
+
+	rsp.Amount = order.Amount
+
 	return nil
 }
 
