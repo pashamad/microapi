@@ -22,7 +22,7 @@ func GetOrder(code string) (*models.Order, error) {
 	}
 	log.Infof("Resolved order receipt: %s", meta.Resolved)
 
-	// todo: build real order
+	// todo: build order
 	amount, _ := strconv.ParseFloat(meta.Resolved["amount"], 32)
 	order := &models.Order{
 		ID:          uuid.UUID{},

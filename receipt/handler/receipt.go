@@ -5,11 +5,14 @@ import (
 	log "github.com/micro/micro/v3/service/logger"
 	receipt "github.com/pashamad/microapi/receipt/proto"
 	"github.com/pashamad/microapi/receipt/scanner"
+	"gorm.io/gorm"
 )
 
 // todo: error definitions
 
-type Receipt struct{}
+type Receipt struct {
+	DB *gorm.DB
+}
 
 // Call is a single request handler called via client.Call or the generated client code
 func (e *Receipt) Call(ctx context.Context, req *receipt.Message, rsp *receipt.Response) error {

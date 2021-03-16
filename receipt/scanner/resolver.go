@@ -20,5 +20,8 @@ var ResolveMeta types.MetaResolver = func(receipt types.ReceiptMeta) (meta types
 		logger.Error("Failed to resolve order meta: ", err.Error())
 		return meta, err
 	}
+
+	// todo: resolve org entity
+
 	return meta, nil
 }

@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package org;
+
+option go_package = "proto;org";
+
+service Org {
+	rpc Lookup(LookupRequest) returns (LookupResponse) {}
+	rpc Stream(StreamingRequest) returns (stream StreamingResponse) {}
+	rpc PingPong(stream Ping) returns (stream Pong) {}
+}
+
+message Entity {
+	string uuid = 1;
+	string name = 2;
+	string tin = 3;
+}
+
+message LookupRequest {
+	string tin = 1;
+}
+
+message LookupResponse {
+	Entity entity = 1;
+}
+
+message StreamingRequest {
+	int64 count = 1;
+}
+
+message StreamingResponse {
+	int64 count = 1;
+}
+
+message Ping {
+	int64 stroke = 1;
+}
+
+message Pong {
+	int64 stroke = 1;
+}
