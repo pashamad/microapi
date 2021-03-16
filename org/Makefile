@@ -19,4 +19,4 @@ test:
 
 .PHONY: docker
 docker:
-	docker build . -t org:latest
+	docker build . -t pashamad/org:latest
