@@ -81,7 +81,7 @@ var FnsRruMetaResolver types.MetaResolver = func(receipt types.ReceiptMeta) (met
 	meta.Resolved = make(map[string]string, 3)
 	b := doc.Data.Body
 	meta.Resolved["user"] = strings.TrimSpace(b.User)
-	meta.Resolved["inn"] = strings.TrimSpace(b.INN)
+	meta.Resolved["tin"] = strings.TrimSpace(b.INN)
 	meta.Resolved["amount"] = fmt.Sprintf("%.2f", float64(b.Amount)/100)
 
 	return meta, nil

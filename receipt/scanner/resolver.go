@@ -28,14 +28,13 @@ var ResolveMeta types.MetaResolver = func(receipt types.ReceiptMeta) (meta types
 	srv := service.New()
 	client := org.NewOrgService("org", srv.Client())
 	// todo: lookup by tin is provider-specific
-	rsp, err := client.Lookup(context.Background(), &org.LookupRequest{
-		Tin: meta.Resolved["tin"],
-	})
+	rsp, err := client.Lookup(context.Background(), &org.LookupRequest{Tin: meta.Resolved["tin"]})
 	if err != nil {
 		log.Error("error resolving org entity for receipt code: ", err)
 		return meta, err
 	}
 	meta.Entity = *rsp.Entity
+	log.Infof("Resolved org entity \"%s\" for receipt code", meta.Entity.Uuid)
 
 	return meta, nil
 }

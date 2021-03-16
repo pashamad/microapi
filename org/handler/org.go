@@ -12,7 +12,7 @@ import (
 )
 
 var (
-	ErrMissingUUID = errors.BadRequest("MISSING_UUID", "Missing UUID")
+	ErrMissingTIN = errors.BadRequest("MISSING_TIN", "Missing TIN")
 )
 
 type Org struct {
@@ -23,7 +23,8 @@ func (e *Org) Lookup(ctx context.Context, req *org.LookupRequest, rsp *org.Looku
 	log.Info("Received Org.Lookup request")
 
 	if len(req.Tin) == 0 {
-		return ErrMissingUUID
+		log.Error("empty TIN in request: ", req.String())
+		return ErrMissingTIN
 	}
 
 	db := e.DB
