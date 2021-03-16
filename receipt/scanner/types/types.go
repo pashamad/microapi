@@ -1,6 +1,9 @@
 package types
 
-import "github.com/pashamad/microapi/orders/models"
+import (
+	"github.com/pashamad/microapi/orders/models"
+	org "github.com/pashamad/microapi/org/proto"
+)
 
 type ProviderKey string
 
@@ -10,10 +13,11 @@ type ReceiptMeta struct {
 	Fields   map[string]string
 }
 
-// todo: biz, cart, amount
+// todo: bizShop, orderCart
 type OrderMeta struct {
 	Receipt  ReceiptMeta
 	Resolved map[string]string
+	Entity   org.Entity
 }
 
 type CodeParser func(string) (ReceiptMeta, error)
