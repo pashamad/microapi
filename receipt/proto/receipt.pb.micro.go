@@ -42,7 +42,6 @@ func NewReceiptEndpoints() []*api.Endpoint {
 // Client API for Receipt service
 
 type ReceiptService interface {
-	Call(ctx context.Context, in *Message, opts ...client.CallOption) (*Response, error)
 	Scan(ctx context.Context, in *ScanRequest, opts ...client.CallOption) (*ScanResponse, error)
 	Stream(ctx context.Context, in *StreamingRequest, opts ...client.CallOption) (Receipt_StreamService, error)
 	PingPong(ctx context.Context, opts ...client.CallOption) (Receipt_PingPongService, error)
@@ -58,16 +57,6 @@ func NewReceiptService(name string, c client.Client) ReceiptService {
 		c:    c,
 		name: name,
 	}
-}
-
-func (c *receiptService) Call(ctx context.Context, in *Message, opts ...client.CallOption) (*Response, error) {
-	req := c.c.NewRequest(c.name, "Receipt.Call", in)
-	out := new(Response)
-	err := c.c.Call(ctx, req, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *receiptService) Scan(ctx context.Context, in *ScanRequest, opts ...client.CallOption) (*ScanResponse, error) {
@@ -183,7 +172,6 @@ func (x *receiptServicePingPong) Recv() (*Pong, error) {
 // Server API for Receipt service
 
 type ReceiptHandler interface {
-	Call(context.Context, *Message, *Response) error
 	Scan(context.Context, *ScanRequest, *ScanResponse) error
 	Stream(context.Context, *StreamingRequest, Receipt_StreamStream) error
 	PingPong(context.Context, Receipt_PingPongStream) error
@@ -191,7 +179,6 @@ type ReceiptHandler interface {
 
 func RegisterReceiptHandler(s server.Server, hdlr ReceiptHandler, opts ...server.HandlerOption) error {
 	type receipt interface {
-		Call(ctx context.Context, in *Message, out *Response) error
 		Scan(ctx context.Context, in *ScanRequest, out *ScanResponse) error
 		Stream(ctx context.Context, stream server.Stream) error
 		PingPong(ctx context.Context, stream server.Stream) error
@@ -205,10 +192,6 @@ func RegisterReceiptHandler(s server.Server, hdlr ReceiptHandler, opts ...server
 
 type receiptHandler struct {
 	ReceiptHandler
-}
-
-func (h *receiptHandler) Call(ctx context.Context, in *Message, out *Response) error {
-	return h.ReceiptHandler.Call(ctx, in, out)
 }
 
 func (h *receiptHandler) Scan(ctx context.Context, in *ScanRequest, out *ScanResponse) error {

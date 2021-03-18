@@ -5,26 +5,19 @@ package receipt;
 option go_package = "proto;receipt";
 
 service Receipt {
-    rpc Call(Message) returns (Response) {}
 	rpc Scan(ScanRequest) returns (ScanResponse) {}
 	rpc Stream(StreamingRequest) returns (stream StreamingResponse) {}
 	rpc PingPong(stream Ping) returns (stream Pong) {}
 }
 
-message Message {
-    string data = 1;
-}
-
-message Response {
-    string result = 1;
-}
-
 message ScanRequest {
-	string data = 1;
+	string code = 1;
 }
 
 message ScanResponse {
-	float amount = 1;
+    string placeId = 1;
+    string placeName = 2;
+	float amount = 3;
 }
 
 message StreamingRequest {

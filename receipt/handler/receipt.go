@@ -8,23 +8,16 @@ import (
 	"gorm.io/gorm"
 )
 
-// todo: error definitions
+// @todo error definitions
 
 type Receipt struct {
 	DB *gorm.DB
 }
 
-// Call is a single request handler called via client.Call or the generated client code
-func (e *Receipt) Call(ctx context.Context, req *receipt.Message, rsp *receipt.Response) error {
-	log.Info("Received Receipt.Call request")
-	rsp.Result = "ok"
-	return nil
-}
-
 func (e *Receipt) Scan(ctx context.Context, req *receipt.ScanRequest, rsp *receipt.ScanResponse) error {
 	log.Info("Received Receipt.Scan request")
 
-	order, err := scanner.GetOrder(req.Data)
+	order, err := scanner.GetOrder(req.Code)
 	if err != nil {
 		return err
 	}
