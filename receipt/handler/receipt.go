@@ -17,7 +17,7 @@ type Receipt struct {
 func (e *Receipt) Scan(ctx context.Context, req *receipt.ScanRequest, rsp *receipt.ScanResponse) error {
 	log.Info("Received Receipt.Scan request")
 
-	order, err := scanner.GetOrder(req.Code)
+	order, err := scanner.GetOrder(ctx, req.Code)
 	if err != nil {
 		return err
 	}

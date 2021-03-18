@@ -6,8 +6,9 @@ import (
 )
 
 var (
-	UnfitParser        = err.New("UNFIT_PARSER")
-	UnfitCode          = errors.BadRequest("UNFIT_CODE_FORMAT", "Unsupported code string passed")
-	CodeNotResolved    = errors.BadRequest("CODE_NOT_RESOLVED", "Code data is not resolved")
-	CodeResolveTimeout = errors.Timeout("CODE_RESOLVE_TIMEOUT", "Code resolve request timeout")
+	UnfitParser          = err.New("UNFIT_PARSER")
+	UnfitCode            = errors.BadRequest("UNFIT_CODE_FORMAT", "Unsupported code string passed")
+	UserNotAuthenticated = errors.Unauthorized("USER_NOT_AUTHENTICATED", "User request is not authenticated")
+	CodeNotResolved      = errors.BadRequest("CODE_NOT_RESOLVED", "Code data is not resolved")
+	CodeResolveTimeout   = errors.Timeout("CODE_RESOLVE_TIMEOUT", "Code resolve request timeout")
 )
