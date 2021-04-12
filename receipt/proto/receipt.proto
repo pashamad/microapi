@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package receipt;
 
-option go_package = "proto;receipt";
+option go_package = "./proto";
 
 service Receipt {
 	rpc Scan(ScanRequest) returns (ScanResponse) {}
