@@ -2,7 +2,9 @@ syntax = "proto3";
 
 package orders;
 
-option go_package = "proto;orders";
+import "google/api/annotations.proto";
+
+option go_package = "./proto;orders";
 
 service Orders {
 	rpc Stream(StreamingRequest) returns (stream StreamingResponse) {}

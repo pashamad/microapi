@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package auth;
 
-option go_package = "./proto";
+option go_package = "./proto;auth";
 
 service Auth {
   rpc LoginApple(LoginAppleRequest) returns (LoginAppleResponse) {}

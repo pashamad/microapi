@@ -11,7 +11,7 @@ import (
 	"time"
 )
 
-// @todo do we really need to pass a context here
+// GetOrder @todo is it necessary to pass a context here
 func GetOrder(ctx context.Context, code string) (*models.Order, error) {
 	// get authenticated user
 	userId, err := user.GetAppUser(ctx)
@@ -32,12 +32,10 @@ func GetOrder(ctx context.Context, code string) (*models.Order, error) {
 	if err != nil {
 		return nil, err
 	}
-	log.Infof("Resolved order receipt: %s", meta.Resolved)
+	log.Infof("Resolved order receipt: %s;; Org entity for receipt: %s (%s)",
+		meta.Resolved, meta.Entity.Name, meta.Entity.Uuid)
 
-	entity := meta.Entity
-	log.Debugf("Org entity for receipt: %+v", entity)
-
-	// todo: build order
+	// @todo build order
 	amount, _ := strconv.ParseFloat(meta.Resolved["amount"], 32)
 	order := &models.Order{
 		ID:          uuid.UUID{},

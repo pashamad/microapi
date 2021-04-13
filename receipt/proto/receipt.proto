@@ -2,36 +2,45 @@ syntax = "proto3";
 
 package receipt;
 
-option go_package = "./proto";
+import "google/api/annotations.proto";
+
+option go_package = "./proto;receipt";
 
 service Receipt {
-	rpc Scan(ScanRequest) returns (ScanResponse) {}
-	rpc Stream(StreamingRequest) returns (stream StreamingResponse) {}
-	rpc PingPong(stream Ping) returns (stream Pong) {}
+  rpc Scan(ScanRequest) returns (ScanResponse) {
+    option (google.api.http) = {
+      post: "/receipt/scan"
+      selector: "app.onlife.v1.Receipt.Scan"
+      body: "{code}"
+      response_body: "amount"
+    };
+  }
+  rpc Stream(StreamingRequest) returns (stream StreamingResponse) {}
+  rpc PingPong(stream Ping) returns (stream Pong) {}
 }
 
 message ScanRequest {
-	string code = 1;
+  string code = 1;
 }
 
 message ScanResponse {
-    string placeId = 1;
-    string placeName = 2;
-	float amount = 3;
+  string placeId = 1;
+  string placeName = 2;
+  float amount = 3;
 }
 
 message StreamingRequest {
-	int64 count = 1;
+  int64 count = 1;
 }
 
 message StreamingResponse {
-	int64 count = 1;
+  int64 count = 1;
 }
 
 message Ping {
-	int64 stroke = 1;
+  int64 stroke = 1;
 }
 
 message Pong {
-	int64 stroke = 1;
+  int64 stroke = 1;
 }

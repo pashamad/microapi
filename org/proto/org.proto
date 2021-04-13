@@ -2,10 +2,16 @@ syntax = "proto3";
 
 package org;
 
-option go_package = "./proto";
+import "google/api/annotations.proto";
+
+option go_package = "./proto;org";
 
 service Org {
-	rpc Lookup(LookupRequest) returns (LookupResponse) {}
+	rpc Lookup(LookupRequest) returns (LookupResponse) {
+		option (google.api.http) = {
+			post: "/lookup"
+		};
+	}
 	rpc Stream(StreamingRequest) returns (stream StreamingResponse) {}
 	rpc PingPong(stream Ping) returns (stream Pong) {}
 }

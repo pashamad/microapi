@@ -25,7 +25,7 @@ func GetAppUser(ctx context.Context) (id uuid.UUID, err error) {
 	}
 	h, ok := m.Get("Authorization")
 	if !ok {
-		//log.Error("Failed to get authorization header from context metadata")
+		log.Error("Failed to get authorization header from context metadata")
 		return id, errors.AuthHeaderNotFound
 	}
 	log.Infof("Loaded authorization header: %s", h)
