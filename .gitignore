@@ -3,3 +3,4 @@ api-*.json
 redoc-static.html
 !docs
 vendor/
+.idea/
